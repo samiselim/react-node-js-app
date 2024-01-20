@@ -1,7 +1,7 @@
 
 def buildImage() {
     echo "building the docker image..."
-    def ver = 0
+    int ver = 0
     withCredentials([usernamePassword(credentialsId: 'sami_docker_hub_credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         sh "docker build -t samiselim/node-app:v${ver} ."
         sh "echo $PASS | docker login -u $USER --password-stdin"
@@ -9,7 +9,7 @@ def buildImage() {
     }
 } 
 def incVersion(){
-    ver +=1
+    ver ++
 }
 
 def deployApp() {
